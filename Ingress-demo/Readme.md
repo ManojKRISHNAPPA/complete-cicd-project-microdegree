@@ -148,4 +148,53 @@ ingress-nginx-admission-create-4298n       0/1     Pending   0          2m34s
 ingress-nginx-admission-patch-shckl        0/1     Pending   0          2m34s
 ingress-nginx-controller-cbb88bdbc-8v48z   0/1     Pending   0          2m34s
 ```
+root@admin-server:~# kubectl get pods  -n ingress-nginx
+NAME                                        READY   STATUS      RESTARTS   AGE
+ingress-nginx-admission-create-c8klk        0/1     Completed   0          44s
+ingress-nginx-admission-patch-rzb86         0/1     Completed   1          44s
+ingress-nginx-controller-847c65586c-25w9x   1/1     Running     0          44s
+root@admin-server:~# kubectl get pods  -n ingress-nginx
 
+NAME                                        READY   STATUS      RESTARTS   AGE
+ingress-nginx-admission-create-c8klk        0/1     Completed   0          47s
+ingress-nginx-admission-patch-rzb86         0/1     Completed   1          47s
+ingress-nginx-controller-847c65586c-25w9x   1/1     Running     0          47s
+root@admin-server:~#
+root@admin-server:~# kubectl get ingress
+NAME                       CLASS    HOSTS                          ADDRESS   PORTS   AGE
+naruto-flask-app-ingress   <none>   naruto-flask-app.example.com             80      88s
+root@admin-server:~# kubectl get ingress
+NAME                       CLASS    HOSTS                          ADDRESS   PORTS   AGE
+naruto-flask-app-ingress   <none>   naruto-flask-app.example.com             80      3m35s
+root@admin-server:~# kubectl get ingress
+NAME                       CLASS    HOSTS                          ADDRESS   PORTS   AGE
+naruto-flask-app-ingress   <none>   naruto-flask-app.example.com             80      3m37s
+root@admin-server:~# kubectl get pods  -n ingress-nginx
+NAME                                        READY   STATUS      RESTARTS   AGE
+ingress-nginx-admission-create-c8klk        0/1     Completed   0          3m7s
+ingress-nginx-admission-patch-rzb86         0/1     Completed   1          3m7s
+ingress-nginx-controller-847c65586c-25w9x   1/1     Running     0          3m7s
+root@admin-server:~# cat /etc/host
+cat: /etc/host: No such file or directory
+root@admin-server:~# cat /etc/hosts
+127.0.0.1 localhost
+
+# The following lines are desirable for IPv6 capable hosts
+::1 ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+root@admin-server:~# vi /etc/hosts
+root@admin-server:~# vi /etc/hosts
+root@admin-server:~# kubectl get pods  -n ingress-nginx
+NAME                                        READY   STATUS      RESTARTS   AGE
+ingress-nginx-admission-create-c8klk        0/1     Completed   0          6m11s
+ingress-nginx-admission-patch-rzb86         0/1     Completed   1          6m11s
+ingress-nginx-controller-847c65586c-25w9x   1/1     Running     0          6m11s
+root@admin-server:~# kubectl get ingress
+NAME                       CLASS    HOSTS                          ADDRESS   PORTS   AGE
+naruto-flask-app-ingress   <none>   naruto-flask-app.example.com             80      6m54s
+root@admin-server:~# curl http://naruto-flask-app.example.com/
+<h1>hello microdegree...this devops masterclass</h1>
