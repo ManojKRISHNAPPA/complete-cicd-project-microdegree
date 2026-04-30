@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-south-2"
 }
 
 resource "aws_vpc" "microdegree_vpc" {
@@ -14,7 +14,7 @@ resource "aws_subnet" "microdegree_subnet" {
   count = 2
   vpc_id                  = aws_vpc.microdegree_vpc.id
   cidr_block              = cidrsubnet(aws_vpc.microdegree_vpc.cidr_block, 8, count.index)
-  availability_zone       = element(["us-east-1a", "us-east-1b"], count.index)
+  availability_zone       = element(["ap-south-2a", "ap-south-2b"], count.index)
   map_public_ip_on_launch = true
 
   tags = {
