@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         IMAGE_NAME = "manojkrishnappa/fullstack:${GIT_COMMIT}"
-        AWS_REGION = "us-east-1"
-        CLUSTER_NAME = "microdegree-cluster"
+        AWS_REGION = "ap-south-2"
+        CLUSTER_NAME = "my-complete-eks"
         NAMESPACE = "microdegree"
     }
 
@@ -87,7 +87,7 @@ pipeline {
         
         stage('Deploy To Kubernetes') {
             steps {
-                withKubeConfig(caCertificate: '', clusterName: 'microdegree-cluster', contextName: '', credentialsId: 'kube', namespace: 'microdegree', restrictKubeConfigAccess: false, serverUrl: 'https://AB2AD8E7E396070F02E8CEC4D6A0D7E9.gr7.us-east-1.eks.amazonaws.com') {
+                withKubeConfig(caCertificate: '', clusterName: 'my-complete-eks', contextName: '', credentialsId: 'kube', namespace: 'sadiq', restrictKubeConfigAccess: false, serverUrl: 'https://2E2EDEEBFD5FB5EFAF01F598B7753431.yl4.ap-south-2.eks.amazonaws.com') {
                     sh "sed -i 's|replace|${IMAGE_NAME}|g' deployment.yml"
                     sh "kubectl apply -f deployment.yml -n ${NAMESPACE}"
                 }
@@ -96,7 +96,7 @@ pipeline {
 
         stage('Verify the Deployment') {
             steps {
-                withKubeConfig(caCertificate: '', clusterName: 'microdegree-cluster', contextName: '', credentialsId: 'kube', namespace: 'microdegree', restrictKubeConfigAccess: false, serverUrl: 'https://AB2AD8E7E396070F02E8CEC4D6A0D7E9.gr7.us-east-1.eks.amazonaws.com') {
+                withKubeConfig(caCertificate: '', clusterName: 'my-complete-eks', contextName: '', credentialsId: 'kube', namespace: 'sadiq', restrictKubeConfigAccess: false, serverUrl: 'https:https://2E2EDEEBFD5FB5EFAF01F598B7753431.yl4.ap-south-2.eks.amazonaws.com') {
                     sh "kubectl get pods -n microdegree"
                     sh "kubectl get svc -n microdegree"
                 }
@@ -129,9 +129,9 @@ pipeline {
                 emailext (
                     subject: "${jobName} - Build ${buildNumber} - ${pipelineStatus.toUpperCase()}",
                     body: body,
-                    to: 'manojdevopstest@gmail.com',
-                    from: 'manojdevopstest@gmail.com',
-                    replyTo: 'manojdevopstest@gmail.com',
+                    to: 'mohamedsadiq9741@gmail.com',
+                    from: 'mohamedsadiq9741@gmail.com',
+                    replyTo: 'mohamedsadiq9741@gmail.com',
                     mimeType: 'text/html',
                     attachmentsPattern: 'trivy-image-report.html'
                 )
